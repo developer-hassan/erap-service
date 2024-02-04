@@ -6,11 +6,11 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import FormCard from "./form/FormCard.jsx";
+import FormCard from "./form/FormCard.tsx";
 import App from "./App.jsx";
-import FormOnePage from "./pages/FormOnePage.jsx";
-import FormThreePage from "./pages/FormThreePage.jsx";
-import FormTwoPage from "./pages/FormTwoPage.jsx";
+import FormOnePage from "./pages/FormOnePage.tsx";
+import FormThreePage from "./pages/FormThreePage.tsx";
+import FormTwoPage from "./pages/FormTwoPage.tsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -26,6 +26,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <RouterProvider router={router} />,
 );

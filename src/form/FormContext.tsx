@@ -1,47 +1,72 @@
-import { createContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 const DEFAULT_FORM_VALUES = {
   form1: {
     // Form 1
     email: "",
-    setEmail() {},
+    setEmail(email: string) {
+      this.email = email;
+    },
     password: "",
-    setPassword() {},
+    setPassword(password: string) {
+      this.password = password;
+    },
   },
   form2: {
     // Form 2
     firstName: "",
-    setFirstName() {},
+    setFirstName(firstName: string) {
+      this.firstName = firstName;
+    },
     lastName: "",
-    setLastName() {},
+    setLastName(lastName: string) {
+      this.lastName = lastName;
+    },
     phone: "",
-    setPhone() {},
+    setPhone(phone: string) {
+      this.phone = phone;
+    },
     ssn: "",
-    setSsn() {},
+    setSsn(ssn: string) {
+      this.ssn = ssn;
+    },
     homeAddress: "",
-    setHomeAddress() {},
+    setHomeAddress(homeAddress: string) {
+      this.homeAddress = homeAddress;
+    },
     city: "",
-    setCity() {},
+    setCity(city: string) {
+      this.city = city;
+    },
     state: "",
-    setState() {},
+    setState(state: string) {
+      this.state = state;
+    },
     zipCode: "",
-    setZipCode() {},
+    setZipCode(zipCode: string) {
+      this.zipCode = zipCode;
+    },
     dateOfBirth: "",
-    setDateOfBirth() {},
+    setDateOfBirth(dateOfBirth: string) {
+      this.dateOfBirth = dateOfBirth;
+    },
   },
   form3: {
     // Form 3
     idFront: "",
-    setidFront() {},
+    setIdFront(idFront: string) {
+      this.idFront = idFront;
+    },
     idBack: "",
-    setIdBack() {},
+    setIdBack(idBack: string) {
+      this.idBack = idBack;
+    },
   },
 };
 
 export const FormContext = createContext(DEFAULT_FORM_VALUES);
 
-// eslint-disable-next-line react/prop-types
-export function FormContextProvider({ children }) {
+export function FormContextProvider({ children }: { children: ReactNode }) {
   // Form 1 state
   const [email, setEmail] = useState(DEFAULT_FORM_VALUES.form1.email);
   const [password, setPassword] = useState(DEFAULT_FORM_VALUES.form1.password);

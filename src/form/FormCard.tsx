@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { FormContextProvider } from "./FormContext.jsx";
+import { FormContextProvider } from "./FormContext.tsx";
 
-// Commit test
 export default function FormCard() {
   return (
     <FormContextProvider>
