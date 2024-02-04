@@ -1,5 +1,7 @@
+import { Navigate } from "react-router-dom";
+
 function App() {
-  return <p className="font-bold text-red-900">Hello Tailwind</p>;
+  return <Navigate to={"/form/1"} />;
 }
 
 export default App;
