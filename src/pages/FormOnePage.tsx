@@ -23,7 +23,7 @@ export type FormOneType = z.infer<typeof formOneSchema>;
 
 export default function FormOnePage() {
   const {
-    form1: { setEmail, setPassword },
+    form1: { setEmail, setPassword, email, password },
   } = useContext(FormContext);
 
   const navigate = useNavigate();
@@ -31,8 +31,8 @@ export default function FormOnePage() {
   const form = useForm<FormOneType>({
     resolver: zodResolver(formOneSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email,
+      password,
     },
   });
 
