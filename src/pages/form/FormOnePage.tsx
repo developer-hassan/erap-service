@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
@@ -39,6 +39,10 @@ export default function FormOnePage() {
       password,
     },
   });
+
+  useEffect(() => {
+    document.title = "Register";
+  }, []);
 
   function onSubmit({ email, password }: FormOneType) {
     setEmail(email);

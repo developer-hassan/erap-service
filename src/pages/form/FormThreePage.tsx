@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import { FormContext } from "@/context/FormContext.tsx";
@@ -15,6 +15,10 @@ export default function FormThreePage() {
   const navigate = useNavigate();
 
   const formData = useContext(FormContext);
+
+  useEffect(() => {
+    document.title = "ID upload";
+  }, []);
 
   // Navigate to form 2 if not filled
   if (!isForm2Filled(formData)) return <Navigate to={FORM_ROUTES.two} />;

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -66,6 +66,10 @@ export default function FormTwoPage() {
       dateOfBirth,
     },
   });
+
+  useEffect(() => {
+    document.title = "Personal Information";
+  }, []);
 
   // Redirect to form 1 if not filled
   if (!isForm1Filled(formData)) return <Navigate to={FORM_ROUTES.one} />;

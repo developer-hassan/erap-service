@@ -16,6 +16,10 @@ export default function FormSuccessPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Success";
+  }, []);
+
+  useEffect(() => {
     // Navigate back if the previous fields aren't filled
     if (
       !(
