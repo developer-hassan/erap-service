@@ -27,8 +27,7 @@ const router = createBrowserRouter([
       { path: "1", loader: delayOneSecond, element: <FormOnePage /> },
       { path: "2", loader: delayOneSecond, element: <FormTwoPage /> },
       { path: "3", loader: delayOneSecond, element: <FormThreePage /> },
-
-      { path: "success", element: <FormSuccessPage /> },
+      { path: "success", loader: delayOneSecond, element: <FormSuccessPage /> },
     ],
   },
 ]);

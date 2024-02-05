@@ -12,50 +12,54 @@ export default function FormCard() {
   const isForm3 = useIsForm3();
   const isLoading = useIsLoadingData();
 
-  if (isLoading) return <Spinner />;
-
   return (
     <FormContextProvider>
-      <main
-        className={cn(
-          "py-10 min-w-full min-h-full",
-          isForm3 ? "bg-[#fcfefd]" : "bg-white",
-        )}
-      >
-        <Card
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <main
           className={cn(
-            "mx-auto max-w-lg drop-shadow-md  p-0",
-            isForm3 ? "bg-white" : "bg-[#fcfefd]",
+            "py-10 min-w-full min-h-full",
+            isForm3 ? "bg-[#fcfefd]" : "bg-white",
           )}
         >
-          <CardHeader>
-            <CardTitle className={"flex items-center justify-center"}>
-              <img className={"h-auto w-80"} src="/logo.png" alt={"Logo"} />
-            </CardTitle>
-          </CardHeader>
-
-          <Outlet />
-        </Card>
-
-        {/* Display footer on routes 3 */}
-        {isForm3 && (
-          <footer
-            className={"flex flex-col items-center justify-center p-5 gap-y-5"}
+          <Card
+            className={cn(
+              "mx-auto max-w-lg drop-shadow-md  p-0",
+              isForm3 ? "bg-white" : "bg-[#fcfefd]",
+            )}
           >
-            {/* Language */}
-            <Button
-              className={"underline underline-offset-1 text-blue-900"}
-              variant={"link"}
+            <CardHeader>
+              <CardTitle className={"flex items-center justify-center"}>
+                <img className={"h-auto w-80"} src="/logo.png" alt={"Logo"} />
+              </CardTitle>
+            </CardHeader>
+
+            <Outlet />
+          </Card>
+
+          {/* Display footer on routes 3 */}
+          {isForm3 && (
+            <footer
+              className={
+                "flex flex-col items-center justify-center p-5 gap-y-5"
+              }
             >
-              English
-            </Button>
-            {/* Footer content*/}
-            <p className={"text-gray-500"}>
-              What is ID.me? | Terms of Service | Privacy Policy
-            </p>
-          </footer>
-        )}
-      </main>
+              {/* Language */}
+              <Button
+                className={"underline underline-offset-1 text-blue-900"}
+                variant={"link"}
+              >
+                English
+              </Button>
+              {/* Footer content*/}
+              <p className={"text-gray-500"}>
+                What is ID.me? | Terms of Service | Privacy Policy
+              </p>
+            </footer>
+          )}
+        </main>
+      )}
     </FormContextProvider>
   );
 }
