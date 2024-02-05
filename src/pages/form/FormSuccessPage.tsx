@@ -1,6 +1,17 @@
+import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+
 import { CardContent, CardFooter } from "@/components/ui/card.tsx";
+import { isForm3Filled } from "@/lib/form-utils.ts";
+import { FormContext } from "@/context/FormContext.tsx";
+import { FORM_ROUTES } from "@/routes/form-routes.ts";
 
 export default function FormSuccessPage() {
+  const formData = useContext(FormContext);
+
+  // Navigate to form 3 if not filled
+  if (!isForm3Filled(formData)) return <Navigate to={FORM_ROUTES.three} />;
+
   return (
     <>
       <CardContent

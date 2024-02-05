@@ -2,7 +2,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { CardContent } from "@/components/ui/card.tsx";
 import { formTwoSchema } from "@/schema/form-schema.ts";
@@ -20,10 +20,15 @@ import { Input } from "@/components/ui/input.tsx";
 import Asterisk from "@/components/ui/asterisk.tsx";
 import SubmitButton from "@/components/form/SubmitButton.tsx";
 import { FORM_ROUTES } from "@/routes/form-routes.ts";
+import { isForm1Filled } from "@/lib/form-utils.ts";
 
 export type FormTwoType = z.infer<typeof formTwoSchema>;
 
 export default function FormTwoPage() {
+  const formData = useContext(FormContext);
+
+  const navigate = useNavigate();
+
   const {
     form2: {
       ssn,
@@ -45,9 +50,7 @@ export default function FormTwoPage() {
       setFirstName,
       setLastName,
     },
-  } = useContext(FormContext);
-
-  const navigate = useNavigate();
+  } = formData;
 
   const form = useForm<FormTwoType>({
     resolver: zodResolver(formTwoSchema),
@@ -63,6 +66,9 @@ export default function FormTwoPage() {
       dateOfBirth,
     },
   });
+
+  // Redirect to form 1 if not filled
+  if (!isForm1Filled(formData)) return <Navigate to={FORM_ROUTES.one} />;
 
   function onSubmit({
     ssn,

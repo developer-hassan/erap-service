@@ -1,19 +1,27 @@
 import { FormEvent, useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 import { FormContext } from "@/context/FormContext.tsx";
 import { CardContent, CardFooter } from "@/components/ui/card.tsx";
 import FileInput from "@/components/form/FileInput.tsx";
 import SubmitButton from "@/components/form/SubmitButton.tsx";
+import { isForm2Filled } from "@/lib/form-utils.ts";
+import { FORM_ROUTES } from "@/routes/form-routes.ts";
 
 export default function FormThreePage() {
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
 
+  const formData = useContext(FormContext);
+
+  // Navigate to form 2 if not filled
+  if (!isForm2Filled(formData)) return <Navigate to={FORM_ROUTES.two} />;
+
   const {
     form1,
     form2,
     form3: { setIdFront, setIdBack, idFront, idBack },
-  } = useContext(FormContext);
+  } = formData;
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
