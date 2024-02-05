@@ -53,12 +53,12 @@ const DEFAULT_FORM_VALUES = {
   },
   form3: {
     // Form 3
-    idFront: "",
-    setIdFront(idFront: string) {
+    idFront: null as unknown as File | undefined,
+    setIdFront(idFront: File | undefined) {
       this.idFront = idFront;
     },
-    idBack: "",
-    setIdBack(idBack: string) {
+    idBack: null as unknown as File | undefined,
+    setIdBack(idBack: File | undefined) {
       this.idBack = idBack;
     },
   },
