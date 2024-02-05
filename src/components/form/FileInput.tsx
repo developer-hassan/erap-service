@@ -44,6 +44,7 @@ export default function FileInput({
       </div>
 
       <input name={name} {...getInputProps()} />
+
       {selectedImage && (
         <div className={"overflow-hidden w-full"}>
           <img

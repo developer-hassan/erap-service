@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 
 import { CardContent } from "@/components/ui/card.tsx";
-import { formTwoSchema } from "@/form/form-schema.ts";
-import { FormContext } from "@/form/FormContext.tsx";
+import { formTwoSchema } from "@/schema/form-schema.ts";
+import { FormContext } from "@/context/FormContext.tsx";
 import {
   Form,
   FormControl,
@@ -18,7 +18,8 @@ import {
 } from "@/components/ui/form.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import Asterisk from "@/components/ui/asterisk.tsx";
-import SubmitButton from "@/form/SubmitButton.tsx";
+import SubmitButton from "@/components/form/SubmitButton.tsx";
+import { FORM_ROUTES } from "@/routes/form-routes.ts";
 
 export type FormTwoType = z.infer<typeof formTwoSchema>;
 
@@ -84,7 +85,7 @@ export default function FormTwoPage() {
     setPhone(phone);
     setCity(city);
 
-    navigate("/form/3");
+    navigate(FORM_ROUTES.three);
   }
 
   return (

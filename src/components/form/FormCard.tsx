@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-import { FormContextProvider } from "./FormContext.tsx";
+import { FormContextProvider } from "../../context/FormContext.tsx";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card.tsx";
 import { cn } from "@/lib/utils.ts";
-import useIsForm3 from "@/form/useIsForm3.ts";
+import useIsForm3 from "@/hooks/form/useIsForm3.ts";
 import { Button } from "@/components/ui/button.tsx";
 
 export default function FormCard() {
@@ -31,7 +31,7 @@ export default function FormCard() {
           <Outlet />
         </Card>
 
-        {/* Display footer on form 3 */}
+        {/* Display footer on routes 3 */}
         {isForm3 && (
           <footer
             className={"flex flex-col items-center justify-center p-5 gap-y-5"}

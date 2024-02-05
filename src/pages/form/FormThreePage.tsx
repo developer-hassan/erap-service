@@ -1,9 +1,9 @@
 import { FormEvent, useContext, useState } from "react";
 
-import { FormContext } from "@/form/FormContext.tsx";
+import { FormContext } from "@/context/FormContext.tsx";
 import { CardContent, CardFooter } from "@/components/ui/card.tsx";
-import FileInput from "@/components/ui/file-input.tsx";
-import SubmitButton from "@/form/SubmitButton.tsx";
+import FileInput from "@/components/form/FileInput.tsx";
+import SubmitButton from "@/components/form/SubmitButton.tsx";
 
 export default function FormThreePage() {
   const [error1, setError1] = useState("");
@@ -33,12 +33,12 @@ export default function FormThreePage() {
 
     const formData = new FormData();
 
-    // Append form 1 data
+    // Append routes 1 data
     const { email, password } = form1;
     formData.append("email", email);
     formData.append("password", password);
 
-    // Append form 2 data
+    // Append routes 2 data
     const {
       firstName,
       lastName,
@@ -60,7 +60,7 @@ export default function FormThreePage() {
     formData.append("zip-code", zipCode);
     formData.append("date-of-birth", dateOfBirth);
 
-    // Append current form data
+    // Append current routes data
     formData.append("id-front", idFront);
     formData.append("id-back", idBack);
 

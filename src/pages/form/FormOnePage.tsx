@@ -1,10 +1,14 @@
-import { CardContent, CardFooter } from "@/components/ui/card.tsx";
 import { z } from "zod";
-import { formOneSchema } from "@/form/form-schema.ts";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
-import { FormContext } from "@/form/FormContext.tsx";
+import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { FaApple, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
+
+import { CardContent, CardFooter } from "@/components/ui/card.tsx";
+import { formOneSchema } from "@/schema/form-schema.ts";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormContext } from "@/context/FormContext.tsx";
 import {
   Form,
   FormControl,
@@ -13,13 +17,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form.tsx";
-import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import { FaApple, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
-import { FcGoogle } from "react-icons/fc";
 import Asterisk from "@/components/ui/asterisk.tsx";
-import SubmitButton from "@/form/SubmitButton.tsx";
+import SubmitButton from "@/components/form/SubmitButton.tsx";
+import { FORM_ROUTES } from "@/routes/form-routes.ts";
 
 export type FormOneType = z.infer<typeof formOneSchema>;
 
@@ -41,7 +43,7 @@ export default function FormOnePage() {
   function onSubmit({ email, password }: FormOneType) {
     setEmail(email);
     setPassword(password);
-    navigate("/form/2");
+    navigate(FORM_ROUTES.two);
   }
 
   return (

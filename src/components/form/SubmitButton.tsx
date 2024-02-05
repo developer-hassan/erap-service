@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button.tsx";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils.ts";
+
+import { Button } from "@/components/ui/button.tsx";
 
 export default function SubmitButton({
   children,

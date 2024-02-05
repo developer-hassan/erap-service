@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { isValidDate } from "@/lib/formUtils.ts";
+
+import { isValidDate } from "@/lib/form-utils.ts";
 
 export const formOneSchema = z.object({
   email: z.string().email("Invalid email format"),

@@ -1,16 +1,17 @@
 import ReactDOM from "react-dom/client";
-
-import "./index.css";
 import {
   createBrowserRouter,
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import FormCard from "./form/FormCard.tsx";
-import App from "./App.jsx";
-import FormOnePage from "./pages/FormOnePage.tsx";
-import FormThreePage from "./pages/FormThreePage.tsx";
-import FormTwoPage from "./pages/FormTwoPage.tsx";
+
+import "./index.css";
+import App from "./App.tsx";
+import FormCard from "./components/form/FormCard.tsx";
+import FormOnePage from "./pages/form/FormOnePage.tsx";
+import FormThreePage from "./pages/form/FormThreePage.tsx";
+import FormTwoPage from "./pages/form/FormTwoPage.tsx";
+import { FORM_ROUTES } from "@/routes/form-routes.ts";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -18,8 +19,10 @@ const router = createBrowserRouter([
     path: "form",
     element: <FormCard />,
     children: [
-      { element: <Navigate to={"/form/1"} />, index: true },
-      { element: <FormOnePage />, path: "1" },
+      // Index route will navigate to first routes
+      { element: <Navigate to={FORM_ROUTES.one} />, index: true },
+
+      { path: "1", element: <FormOnePage /> },
       { path: "2", element: <FormTwoPage /> },
       { path: "3", element: <FormThreePage /> },
     ],

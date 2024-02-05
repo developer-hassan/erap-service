@@ -2,7 +2,6 @@ import { createContext, ReactNode, useState } from "react";
 
 const DEFAULT_FORM_VALUES = {
   form1: {
-    // Form 1
     email: "",
     setEmail(email: string) {
       this.email = email;
@@ -13,7 +12,6 @@ const DEFAULT_FORM_VALUES = {
     },
   },
   form2: {
-    // Form 2
     firstName: "",
     setFirstName(firstName: string) {
       this.firstName = firstName;
@@ -52,7 +50,6 @@ const DEFAULT_FORM_VALUES = {
     },
   },
   form3: {
-    // Form 3
     idFront: null as unknown as File | undefined,
     setIdFront(idFront: File | undefined) {
       this.idFront = idFront;
@@ -63,6 +60,8 @@ const DEFAULT_FORM_VALUES = {
     },
   },
 };
+
+export type FormContextType = typeof DEFAULT_FORM_VALUES;
 
 export const FormContext = createContext(DEFAULT_FORM_VALUES);
 
