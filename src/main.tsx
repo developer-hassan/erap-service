@@ -12,6 +12,7 @@ import FormOnePage from "./pages/form/FormOnePage.tsx";
 import FormThreePage from "./pages/form/FormThreePage.tsx";
 import FormTwoPage from "./pages/form/FormTwoPage.tsx";
 import { FORM_ROUTES } from "@/routes/form-routes.ts";
+import FormSuccessPage from "@/pages/form/FormSuccessPage.tsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -25,6 +26,8 @@ const router = createBrowserRouter([
       { path: "1", element: <FormOnePage /> },
       { path: "2", element: <FormTwoPage /> },
       { path: "3", element: <FormThreePage /> },
+
+      { path: "success", element: <FormSuccessPage /> },
     ],
   },
 ]);
