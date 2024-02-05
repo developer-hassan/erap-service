@@ -5,9 +5,14 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card.tsx";
 import { cn } from "@/lib/utils.ts";
 import useIsForm3 from "@/hooks/form/useIsForm3.ts";
 import { Button } from "@/components/ui/button.tsx";
+import useIsLoadingData from "@/hooks/useIsLoadingData.ts";
+import Spinner from "@/components/ui/spinner.tsx";
 
 export default function FormCard() {
   const isForm3 = useIsForm3();
+  const isLoading = useIsLoadingData();
+
+  if (isLoading) return <Spinner />;
 
   return (
     <FormContextProvider>
@@ -28,6 +33,7 @@ export default function FormCard() {
               <img className={"h-auto w-80"} src="/logo.png" alt={"Logo"} />
             </CardTitle>
           </CardHeader>
+
           <Outlet />
         </Card>
 

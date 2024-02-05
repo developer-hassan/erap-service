@@ -13,6 +13,7 @@ import FormThreePage from "./pages/form/FormThreePage.tsx";
 import FormTwoPage from "./pages/form/FormTwoPage.tsx";
 import { FORM_ROUTES } from "@/routes/form-routes.ts";
 import FormSuccessPage from "@/pages/form/FormSuccessPage.tsx";
+import { delayOneSecond } from "@/service/fake-api.ts";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -23,9 +24,9 @@ const router = createBrowserRouter([
       // Index route will navigate to first routes
       { element: <Navigate to={FORM_ROUTES.one} />, index: true },
 
-      { path: "1", element: <FormOnePage /> },
-      { path: "2", element: <FormTwoPage /> },
-      { path: "3", element: <FormThreePage /> },
+      { path: "1", loader: delayOneSecond, element: <FormOnePage /> },
+      { path: "2", loader: delayOneSecond, element: <FormTwoPage /> },
+      { path: "3", loader: delayOneSecond, element: <FormThreePage /> },
 
       { path: "success", element: <FormSuccessPage /> },
     ],
