@@ -18,6 +18,8 @@ import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { FaApple, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
+import Asterisk from "@/components/ui/asterisk.tsx";
+import SubmitButton from "@/form/SubmitButton.tsx";
 
 export type FormOneType = z.infer<typeof formOneSchema>;
 
@@ -44,14 +46,16 @@ export default function FormOnePage() {
 
   return (
     <>
-      <CardContent className={"flex flex-col gap-y-10"}>
+      <CardContent className={"flex flex-col gap-y-10 p-20"}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>
+                    Email <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -68,7 +72,9 @@ export default function FormOnePage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>
+                    Password <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type={"password"}
@@ -81,9 +87,7 @@ export default function FormOnePage() {
               )}
               name={"password"}
             />
-            <Button className={"bg-blue-600"} type={"submit"}>
-              Register
-            </Button>
+            <SubmitButton>Register</SubmitButton>
           </form>
         </Form>
 
@@ -132,7 +136,7 @@ export default function FormOnePage() {
           English
         </Button>
       </CardContent>
-      <CardFooter className={"flex items-center justify-center mt-2"}>
+      <CardFooter className={"flex items-center justify-center -mt-10 pb-20"}>
         <p className={"text-gray-900"}>
           What is ID.me? | Terms of Service | Privacy Policy
         </p>

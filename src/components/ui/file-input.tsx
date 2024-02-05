@@ -1,13 +1,15 @@
 import { useDropzone } from "react-dropzone";
-import { useCallback, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
+import { FaImages } from "react-icons/fa6";
 
 export default function FileInput({
   onUpload,
   name,
+  children,
 }: {
   onUpload: (file: File) => void;
-  required: boolean;
   name: string;
+  children: ReactNode;
 }) {
   const [selectedImage, setSelectedImage] = useState("");
 
@@ -27,21 +29,29 @@ export default function FileInput({
   return (
     <div
       {...getRootProps()}
-      className={`w-full h-64 border-2 border-dashed rounded-lg p-4 ${
+      className={`cursor-pointer w-full items-center justify-center flex flex-col gap-y-3 h-64 border-2 border-dashed rounded-lg p-4 ${
         isDragActive ? "border-blue-500" : "border-gray-300"
       }`}
     >
+      <div className={"flex flex-col justify-center items-center "}>
+        <FaImages className={"w-6 h-6 text-center"} />
+        <label
+          htmlFor={name}
+          className="text-blue-500 font-semibold text-center cursor-pointer"
+        >
+          {children}
+        </label>
+      </div>
+
       <input name={name} {...getInputProps()} />
-      {selectedImage ? (
-        <img
-          src={selectedImage}
-          alt="Preview"
-          className="w-full h-full object-cover rounded-lg"
-        />
-      ) : (
-        <p className="text-gray-500 text-center">
-          Click or drag & drop an image here
-        </p>
+      {selectedImage && (
+        <div className={"overflow-hidden w-full"}>
+          <img
+            src={selectedImage}
+            alt="Preview"
+            className="w-full h-full object-cover rounded-lg"
+          />
+        </div>
       )}
     </div>
   );

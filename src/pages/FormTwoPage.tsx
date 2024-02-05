@@ -1,9 +1,11 @@
-import { CardContent } from "@/components/ui/card.tsx";
 import { z } from "zod";
-import { formTwoSchema } from "@/form/form-schema.ts";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+
+import { CardContent } from "@/components/ui/card.tsx";
+import { formTwoSchema } from "@/form/form-schema.ts";
 import { FormContext } from "@/form/FormContext.tsx";
 import {
   Form,
@@ -14,9 +16,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form.tsx";
-import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import Asterisk from "@/components/ui/asterisk.tsx";
+import SubmitButton from "@/form/SubmitButton.tsx";
 
 export type FormTwoType = z.infer<typeof formTwoSchema>;
 
@@ -87,10 +89,10 @@ export default function FormTwoPage() {
 
   return (
     <>
-      <CardContent className={"flex flex-col gap-y-10"}>
-        <h1 className={"text-3xl text-blue-600 font-bold text-center"}>
-          Registration
-        </h1>
+      <h1 className={"text-3xl text-[#00599c] font-bold text-center"}>
+        Registration
+      </h1>
+      <CardContent className={"flex flex-col gap-y-10 p-20"}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
             {/* First Name */}
@@ -98,7 +100,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>First Name</FormLabel>
+                  <FormLabel>
+                    First Name <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"Enter your first name"} />
                   </FormControl>
@@ -113,7 +117,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Last name</FormLabel>
+                  <FormLabel>
+                    Last name <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"Enter your last name"} />
                   </FormControl>
@@ -128,7 +134,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel>
+                    Phone <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -150,7 +158,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>SSN</FormLabel>
+                  <FormLabel>
+                    SSN <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"XXX-XX-XXXX"} />
                   </FormControl>
@@ -165,7 +175,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Home Address</FormLabel>
+                  <FormLabel>
+                    Home Address <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"Enter your address"} />
                   </FormControl>
@@ -180,7 +192,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>
+                    City <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"Enter your city"} />
                   </FormControl>
@@ -195,7 +209,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>State</FormLabel>
+                  <FormLabel>
+                    State <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"Enter your state"} />
                   </FormControl>
@@ -210,7 +226,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Zipcode</FormLabel>
+                  <FormLabel>
+                    Zipcode <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"Enter your zipcode"} />
                   </FormControl>
@@ -225,7 +243,9 @@ export default function FormTwoPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Date of birth</FormLabel>
+                  <FormLabel>
+                    Date of birth <Asterisk />
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} placeholder={"DD/MM/YYYY"} />
                   </FormControl>
@@ -235,9 +255,7 @@ export default function FormTwoPage() {
               name={"dateOfBirth"}
             />
 
-            <Button className={"bg-blue-600 !mt-10"} type={"submit"}>
-              Submit
-            </Button>
+            <SubmitButton className={"!mt-5"}>Submit</SubmitButton>
           </form>
         </Form>
       </CardContent>
