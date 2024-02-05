@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 
 import "./index.css";
-import HomePage from "./pages/HomePage.tsx";
 import FormCard from "./components/form/FormCard.tsx";
 import FormOnePage from "./pages/form/FormOnePage.tsx";
 import FormThreePage from "./pages/form/FormThreePage.tsx";
@@ -16,7 +15,7 @@ import FormSuccessPage from "@/pages/form/FormSuccessPage.tsx";
 import { delayOneSecond } from "@/service/fake-api.ts";
 
 const router = createBrowserRouter([
-  { path: "/", element: <HomePage /> },
+  { path: "/", element: <Navigate to={FORM_ROUTES.one} /> },
   {
     path: "form",
     element: <FormCard />,
