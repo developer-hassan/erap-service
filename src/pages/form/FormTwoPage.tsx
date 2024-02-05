@@ -20,7 +20,11 @@ import { Input } from "@/components/ui/input.tsx";
 import Asterisk from "@/components/ui/asterisk.tsx";
 import SubmitButton from "@/components/form/SubmitButton.tsx";
 import { FORM_ROUTES } from "@/routes/form-routes.ts";
-import { isForm1Filled } from "@/lib/form-utils.ts";
+import {
+  formatDateOfBirth,
+  formatSSN,
+  isForm1Filled,
+} from "@/lib/form-utils.ts";
 
 export type FormTwoType = z.infer<typeof formTwoSchema>;
 
@@ -167,13 +171,20 @@ export default function FormTwoPage() {
             {/* SSN */}
             <FormField
               control={form.control}
-              render={({ field }) => (
+              render={({ field: { onChange, ...otherFields } }) => (
                 <FormItem>
                   <FormLabel>
                     SSN <Asterisk />
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={"XXX-XX-XXXX"} />
+                    <Input
+                      {...otherFields}
+                      onChange={(event) => {
+                        event.target.value = formatSSN(event.target.value);
+                        onChange(event);
+                      }}
+                      placeholder={"XXX-XX-XXXX"}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -252,13 +263,22 @@ export default function FormTwoPage() {
             {/* Date of birth */}
             <FormField
               control={form.control}
-              render={({ field }) => (
+              render={({ field: { onChange, ...otherFields } }) => (
                 <FormItem>
                   <FormLabel>
                     Date of birth <Asterisk />
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={"DD/MM/YYYY"} />
+                    <Input
+                      {...otherFields}
+                      onChange={(event) => {
+                        event.target.value = formatDateOfBirth(
+                          event.target.value,
+                        );
+                        onChange(event);
+                      }}
+                      placeholder={"DD/MM/YYYY"}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

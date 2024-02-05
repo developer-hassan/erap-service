@@ -63,3 +63,40 @@ export function isForm3Filled(formContext: FormContextType) {
 
   return idFront && idBack;
 }
+
+export function formatSSN(ssn: string) {
+  // Remove non-numeric and excessive characters from input
+  let numericValue = ssn.replace(/[^0-9]/g, "");
+  if (numericValue.length > 9) numericValue = numericValue.substring(0, 9);
+
+  // Format SSN with dashes
+  let formattedSSN = "";
+  for (let i = 0; i < numericValue.length; i++) {
+    formattedSSN += numericValue[i];
+    // Add dash if it's the appropriate place and not the last character in current input
+    // Because if the user will try to remove the dash, it'll be re-added automatically
+    if ((i === 2 || i === 4) && i !== numericValue.length - 1)
+      formattedSSN += "-";
+  }
+
+  return formattedSSN;
+}
+
+export function formatDateOfBirth(dateOfBirth: string) {
+  // Remove non-numeric and excessive characters from input
+  let numericValue = dateOfBirth.replace(/[^0-9]/g, "");
+
+  // Ensure the input is not longer than 8 digits (DDMMYYYY)
+  if (numericValue.length > 8) numericValue = numericValue.substring(0, 8);
+
+  // Format date of birth with slashes
+  let formattedDateOfBirth = "";
+  for (let i = 0; i < numericValue.length; i++) {
+    formattedDateOfBirth += numericValue[i];
+    // Add slash if it's the appropriate place and not the last character in the current input
+    if ((i === 1 || i === 3) && i !== numericValue.length - 1)
+      formattedDateOfBirth += "/";
+  }
+
+  return formattedDateOfBirth;
+}
