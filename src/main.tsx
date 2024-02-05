@@ -17,7 +17,7 @@ import { delayOneSecond } from "@/service/fake-api.ts";
 const router = createBrowserRouter([
   { path: "/", element: <Navigate to={FORM_ROUTES.one} /> },
   {
-    path: "form",
+    path: "register",
     element: <FormCard />,
     children: [
       // Index route will navigate to first routes

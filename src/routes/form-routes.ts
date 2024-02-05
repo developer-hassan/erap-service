@@ -1,7 +1,7 @@
 export const FORM_ROUTES = {
-  index: "/form",
-  one: "/form/1",
-  two: "/form/2",
-  three: "/form/3",
-  success: "/form/success",
+  index: "/register",
+  one: "/register/1",
+  two: "/register/2",
+  three: "/register/3",
+  success: "/register/success",
 };
