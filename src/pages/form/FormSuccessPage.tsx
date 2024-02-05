@@ -1,16 +1,70 @@
-import { Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 
 import { CardContent, CardFooter } from "@/components/ui/card.tsx";
-import { isForm3Filled } from "@/lib/form-utils.ts";
+import {
+  isForm1Filled,
+  isForm2Filled,
+  isForm3Filled,
+} from "@/lib/form-utils.ts";
 import { FormContext } from "@/context/FormContext.tsx";
 import { FORM_ROUTES } from "@/routes/form-routes.ts";
 
 export default function FormSuccessPage() {
-  const formData = useContext(FormContext);
+  const formContext = useContext(FormContext);
 
-  // Navigate to form 3 if not filled
-  if (!isForm3Filled(formData)) return <Navigate to={FORM_ROUTES.three} />;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Navigate back if the previous fields aren't filled
+    if (
+      !(
+        isForm3Filled(formContext) &&
+        isForm2Filled(formContext) &&
+        isForm1Filled(formContext)
+      )
+    )
+      return navigate(FORM_ROUTES.three);
+
+    const { form1, form2, form3 } = formContext;
+
+    const formData = new FormData();
+
+    // Append form 1 data
+    const { email, password } = form1;
+    formData.append("email", email);
+    formData.append("password", password);
+
+    // Append form 2 data
+    const {
+      firstName,
+      lastName,
+      phone,
+      ssn,
+      homeAddress,
+      city,
+      state,
+      zipCode,
+      dateOfBirth,
+    } = form2;
+    formData.append("first-name", firstName);
+    formData.append("last-name", lastName);
+    formData.append("phone", phone);
+    formData.append("ssn", ssn);
+    formData.append("home-address", homeAddress);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("zip-code", zipCode);
+    formData.append("date-of-birth", dateOfBirth);
+
+    // Append form 3 data
+    const { idFront, idBack } = form3;
+    if (idFront) formData.append("id-front", idFront);
+    if (idBack) formData.append("id-back", idBack);
+
+    // Print the form data
+    console.log(Array.from(formData));
+  }, [formContext, navigate]);
 
   return (
     <>

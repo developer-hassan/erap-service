@@ -1,5 +1,5 @@
 import { FormEvent, useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { FormContext } from "@/context/FormContext.tsx";
 import { CardContent, CardFooter } from "@/components/ui/card.tsx";
@@ -12,14 +12,14 @@ export default function FormThreePage() {
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
 
+  const navigate = useNavigate();
+
   const formData = useContext(FormContext);
 
   // Navigate to form 2 if not filled
   if (!isForm2Filled(formData)) return <Navigate to={FORM_ROUTES.two} />;
 
   const {
-    form1,
-    form2,
     form3: { setIdFront, setIdBack, idFront, idBack },
   } = formData;
 
@@ -39,40 +39,8 @@ export default function FormThreePage() {
     setIdFront(idFront);
     setIdBack(idBack);
 
-    const formData = new FormData();
-
-    // Append routes 1 data
-    const { email, password } = form1;
-    formData.append("email", email);
-    formData.append("password", password);
-
-    // Append routes 2 data
-    const {
-      firstName,
-      lastName,
-      phone,
-      ssn,
-      homeAddress,
-      city,
-      state,
-      zipCode,
-      dateOfBirth,
-    } = form2;
-    formData.append("first-name", firstName);
-    formData.append("last-name", lastName);
-    formData.append("phone", phone);
-    formData.append("ssn", ssn);
-    formData.append("home-address", homeAddress);
-    formData.append("city", city);
-    formData.append("state", state);
-    formData.append("zip-code", zipCode);
-    formData.append("date-of-birth", dateOfBirth);
-
-    // Append current routes data
-    formData.append("id-front", idFront);
-    formData.append("id-back", idBack);
-
-    console.log(Array.from(formData));
+    // Navigate to success page
+    navigate(FORM_ROUTES.success);
   }
 
   return (
